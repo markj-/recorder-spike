@@ -1,14 +1,21 @@
 import Tone from "tone";
 
+const record = document.getElementById("record");
+const log = document.getElementById("log");
+
 const main = async () => {
   // @ts-ignore
   const mic = new Tone.UserMedia();
+  const fft = new Tone.FFT();
   mic.open().then(function(){
-    mic.toMaster();
+    mic.connect(fft);
+    setInterval(() => {
+      if (log) {
+        log.innerText = fft.getValue();
+      }  
+    }, 100);
   });
 };
-
-const record = document.getElementById("record");
 
 if (record) {
   record.addEventListener('click', main);
