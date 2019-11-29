@@ -2,8 +2,8 @@ import RecordRTC, { StereoAudioRecorder } from "recordrtc";
 
 const main = async () => {
   // @ts-ignore
-  const ctx = new (window.AudioContext || window.webkitAudioContext)();
   const mic = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
   const src = ctx.createMediaStreamSource(mic);
   const dest = ctx.createMediaStreamDestination();
   const recorder = RecordRTC(dest.stream, {
