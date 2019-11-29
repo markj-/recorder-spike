@@ -1,17 +1,16 @@
 import Tone from "tone";
 
-const record = document.getElementById("record");
-const enable = document.getElementById("enable");
-const log = document.getElementById("log");
+var record = document.getElementById("record");
+var log = document.getElementById("log");
 
-const enableAudio = async () => {
-  await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-}
-
-const main = async () => {
+var main = function() {
   // @ts-ignore
-  const mic = new Tone.UserMedia();
-  const fft = new Tone.FFT();
+  navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+    .then(function() {
+
+    });
+  var mic = new Tone.UserMedia();
+  var fft = new Tone.FFT();
   mic.open().then(function(){
     mic.connect(fft);
     setInterval(() => {
@@ -24,8 +23,4 @@ const main = async () => {
 
 if (record) {
   record.addEventListener('click', main);
-}
-
-if (enable) {
-  enable.addEventListener('click', enableAudio);
 }
