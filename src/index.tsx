@@ -7,18 +7,17 @@ var main = function() {
   // @ts-ignore
   navigator.mediaDevices.getUserMedia({ audio: true, video: false })
     .then(function() {
-
+      var mic = new Tone.UserMedia();
+      var fft = new Tone.FFT();
+      mic.open().then(function(){
+        mic.connect(fft);
+        setInterval(() => {
+          if (log) {
+            log.innerText = fft.getValue();
+          }  
+        }, 100);
+      });
     });
-  var mic = new Tone.UserMedia();
-  var fft = new Tone.FFT();
-  mic.open().then(function(){
-    mic.connect(fft);
-    setInterval(() => {
-      if (log) {
-        log.innerText = fft.getValue();
-      }  
-    }, 100);
-  });
 };
 
 if (record) {
