@@ -1,7 +1,12 @@
 import Tone from "tone";
 
 const record = document.getElementById("record");
+const enable = document.getElementById("enable");
 const log = document.getElementById("log");
+
+const enableAudio = async () => {
+  await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+}
 
 const main = async () => {
   // @ts-ignore
@@ -19,4 +24,8 @@ const main = async () => {
 
 if (record) {
   record.addEventListener('click', main);
+}
+
+if (enable) {
+  enable.addEventListener('click', enableAudio);
 }
