@@ -8034,7 +8034,7 @@ react-dev-utils@^9.1.0:
     strip-ansi "5.2.0"
     text-table "0.2.0"
 
-react-dom@16.12.0:
+react-dom@^16.12.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
   integrity sha512-LMxFfAGrcS3kETtQaCkTKjMiifahaMySFDn71fZUNpPHZQEzmk/GiAeIT8JSOrHB23fnuCOMruL2a8NYlw+8Gw==
@@ -8115,7 +8115,7 @@ react-scripts@3.2.0:
   optionalDependencies:
     fsevents "2.0.7"
 
-react@16.12.0:
+react@^16.12.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.12.0.tgz#0c0a9c6a142429e3614834d5a778e18aa78a0b83"
   integrity sha512-fglqy3k5E+81pA8s+7K0/T3DBCF0ZDOher1elBFzF7O6arXJgzyu/FW+COxFvAWXJoJN9KIZbT2LXlukwphYTA==
@@ -8195,6 +8195,11 @@ realpath-native@^1.1.0:
   integrity sha512-wlgPA6cCIIg9gKz0fgAPjnzh4yR/LnXovwuo9hvyGvx3h8nX4+/iLZplfUWasXpqD8BdnGnP5njOFjkUwPzvjA==
   dependencies:
     util.promisify "^1.0.0"
+
+recordrtc@^5.5.8:
+  version "5.5.8"
+  resolved "https://registry.yarnpkg.com/recordrtc/-/recordrtc-5.5.8.tgz#46eaf3500651701fda13a3d5826270270f9178a9"
+  integrity sha512-+BzbllHyL6Q8gAuaqjO8RdqofL4C6yI670hicMaUW/0dDsKHeKyz0S4M+n7sHnr4dP0LGWqcod6gazRMtXob6A==
 
 recursive-readdir@2.2.2:
   version "2.2.2"
@@ -9384,6 +9389,11 @@ toidentifier@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
+
+tone@^13.8.25:
+  version "13.8.25"
+  resolved "https://registry.yarnpkg.com/tone/-/tone-13.8.25.tgz#057eefb39d4c749524db0ca210e34303cdc3c025"
+  integrity sha512-8QqmLn+/R+Urib/78zf93+NqFLddXS777kQO7+EbJHwqy+nmug+SJFRp2KIytT0LQY2sJBiopNb2ceHA8uQQJg==
 
 tough-cookie@^2.3.3, tough-cookie@^2.3.4, tough-cookie@^2.5.0:
   version "2.5.0"
