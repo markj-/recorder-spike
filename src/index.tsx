@@ -1,8 +1,11 @@
 import Tone from "tone";
 // import RecordRTC, { StereoAudioRecorder } from "recordrtc";
 
-const main = async () => {
+const request = async () => {
   await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+};
+const main = async () => {
+  
   // const ctx  = Tone.context;
   const mic = new Tone.UserMedia();
   await mic.open();
@@ -31,8 +34,13 @@ const main = async () => {
   // }, 5000);
 };
 
-const button = document.querySelector("button");
+const requestMic = document.getElementById("request-mic")
+const record = document.getElementById("record");
 
-if (button) {
-  button.addEventListener('click', main);
+if (requestMic) {
+  requestMic.addEventListener('click', request);
+}
+
+if (record) {
+  record.addEventListener('click', main);
 }
