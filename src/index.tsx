@@ -1,12 +1,8 @@
 import RecordRTC, { StereoAudioRecorder } from "recordrtc";
 
-let mic: MediaStream;
-const request = async () => {
-  mic = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-};
-
 const main = async () => {
   // @ts-ignore
+  const mic = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
   const ctx = new webkitAudioContext();
   const src = ctx.createMediaStreamSource(mic);
   const dest = ctx.createMediaStreamDestination();
@@ -32,12 +28,7 @@ const main = async () => {
   }, 5000);
 };
 
-const requestMic = document.getElementById("request-mic")
 const record = document.getElementById("record");
-
-if (requestMic) {
-  requestMic.addEventListener('click', request);
-}
 
 if (record) {
   record.addEventListener('click', main);
