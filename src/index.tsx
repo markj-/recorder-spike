@@ -4,7 +4,7 @@ const main = async () => {
   // @ts-ignore
   const mic = new Tone.UserMedia();
   mic.open().then(function(){
-    alert(mic.state);
+    mic.toMaster();
   });
 };
 
