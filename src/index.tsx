@@ -17,6 +17,7 @@ var main = function() {
           }  
         }, 100);
       });
+      Tone.start();
     });
 };
 
