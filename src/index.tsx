@@ -45,7 +45,7 @@ const main = async () => {
     type: 'audio',
     recorderType: StereoAudioRecorder,
     numberOfAudioChannels: 2,
-    sampleRate: 4100,
+    sampleRate: 44100,
     bufferSize: 4096
   });
   recorder.startRecording();
