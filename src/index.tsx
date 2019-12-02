@@ -26,6 +26,7 @@ const replaceAudio = (src) => {
 }
 
 const requestMicrophone = async () => {
+  audio.muted = true;
   Tone.start();
   mic = new Tone.UserMedia();
   await mic.open();
@@ -41,6 +42,7 @@ const requestMicrophone = async () => {
 };
 
 const main = async () => {
+  audio.muted = true;
   let recorder = RecordRTC(dest.stream, {
     type: 'audio',
     recorderType: StereoAudioRecorder,
