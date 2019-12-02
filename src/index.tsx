@@ -44,7 +44,9 @@ const main = async () => {
   let recorder = RecordRTC(dest.stream, {
     type: 'audio',
     recorderType: StereoAudioRecorder,
-    numberOfAudioChannels: 1
+    numberOfAudioChannels: 2,
+    sampleRate: 4100,
+    bufferSize: 4096
   });
   recorder.startRecording();
 
