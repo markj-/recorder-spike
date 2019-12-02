@@ -43,6 +43,7 @@ const main = async () => {
       const blob = recorder.getBlob();
       if (audio) {
         replaceAudio(URL.createObjectURL(blob));
+        mic.stop();
       }
     });
   }, 3000);
