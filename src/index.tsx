@@ -2,24 +2,29 @@ import Tone from "tone";
 import RecordRTC, { StereoAudioRecorder } from "recordrtc";
 
 const record = document.getElementById("record");
+const request = document.getElementById("request");
 const log = document.getElementById("log");
 const audio = document.querySelector("audio");
 
-const main = async () => {
-  // @ts-ignore
-  const mic = new Tone.UserMedia();
-  const fft = new Tone.FFT();
-  const dest = Tone.context.createMediaStreamDestination();
-  mic.fan(fft, dest);
-  Tone.start();
-  await mic.open();
+let mic;
+let dest;
 
+const requestMicrophone = async () => {
+  Tone.start();
+  mic = new Tone.UserMedia();
+  await mic.open();
+  dest = Tone.context.createMediaStreamDestination();
+  const fft = new Tone.FFT();
+  mic.fan(fft, dest);
+  
   setInterval(() => {
     if (log) {
       log.innerHTML = fft.getValue();
     }
   }, 100);
+};
 
+const main = async () => {
   let recorder = RecordRTC(dest.stream, {
     type: 'audio',
     recorderType: StereoAudioRecorder,
@@ -39,4 +44,8 @@ const main = async () => {
 
 if (record) {
   record.addEventListener('click', main);
+}
+
+if (request) {
+  request.addEventListener('click', requestMicrophone);
 }
