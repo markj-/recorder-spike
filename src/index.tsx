@@ -3,13 +3,10 @@ import RecordRTC, { StereoAudioRecorder } from "recordrtc";
 
 const record = document.getElementById("record");
 const request = document.getElementById("request");
-const log = document.getElementById("log");
 
 let audio = document.querySelector("audio");
 
 let mic;
-let dest;
-
 
 const replaceAudio = (src) => {
   var newAudio = document.createElement('audio');
@@ -26,24 +23,12 @@ const replaceAudio = (src) => {
 }
 
 const requestMicrophone = async () => {
-  audio.muted = true;
+  mic = await navigator.mediaDevices.getUserMedia({ audio: true, video: false })
   Tone.start();
-  mic = new Tone.UserMedia();
-  await mic.open();
-  dest = Tone.context.createMediaStreamDestination();
-  const fft = new Tone.FFT();
-  mic.fan(fft, dest);
-  
-  setInterval(() => {
-    if (log) {
-      log.innerHTML = fft.getValue();
-    }
-  }, 100);
 };
 
 const main = async () => {
-  audio.muted = true;
-  let recorder = RecordRTC(dest.stream, {
+  let recorder = RecordRTC(mic, {
     type: 'audio',
     recorderType: StereoAudioRecorder,
     numberOfAudioChannels: 2,
