@@ -36,7 +36,7 @@ const main = async () => {
     recorder.stopRecording(function() {
       const blob = recorder.getBlob();
       if (audio) {
-        audio.src = URL.createObjectURL(blob);
+        audio.srcObject = blob;
       }
     });
   }, 3000);
