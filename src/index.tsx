@@ -7,14 +7,19 @@ const request = document.getElementById("request");
 let audio = document.querySelector("audio");
 
 let mic;
+let dest;
 
 const requestMicrophone = async () => {
-  mic = await navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+  mic = new Tone.UserMedia();
+  dest = Tone.context.createMediaStreamDestination();
+  await mic.open();
+  mic.connect(dest);
   Tone.start();
+  console.log('started');
 };
 
-const main = async () => {
-  let recorder = RecordRTC(mic, {
+const main = () => {
+  let recorder = RecordRTC(dest.stream, {
     type: 'audio',
     recorderType: StereoAudioRecorder,
     numberOfAudioChannels: 1
