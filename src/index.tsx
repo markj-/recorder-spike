@@ -10,14 +10,12 @@ let mic;
 let dest;
 
 const requestMicrophone = async () => {
-  Tone.start();
   mic = new Tone.UserMedia();
   await mic.open();
   dest = Tone.context.createMediaStreamDestination();
   const fft = new Tone.FFT();
   mic.fan(fft, dest);
-  
-  audio.srcObject = mic;
+  Tone.start();
   
   setInterval(() => {
     if (log) {
