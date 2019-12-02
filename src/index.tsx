@@ -24,6 +24,7 @@ const replaceAudio = (src) => {
 
 const requestMicrophone = async () => {
   mic = await navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+  audio.srcObject = mic;
   Tone.start();
 };
 
