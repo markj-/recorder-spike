@@ -17,6 +17,8 @@ const requestMicrophone = async () => {
   const fft = new Tone.FFT();
   mic.fan(fft, dest);
   
+  audio.srcObject = mic;
+  
   setInterval(() => {
     if (log) {
       log.innerHTML = fft.getValue();
@@ -36,7 +38,7 @@ const main = async () => {
     recorder.stopRecording(function() {
       const blob = recorder.getBlob();
       if (audio) {
-        audio.srcObject = blob;
+        audio.src = URL.createObjectURL(blob);
       }
     });
   }, 3000);
