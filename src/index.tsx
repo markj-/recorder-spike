@@ -4,13 +4,28 @@ import RecordRTC, { StereoAudioRecorder } from "recordrtc";
 const record = document.getElementById("record");
 const request = document.getElementById("request");
 const log = document.getElementById("log");
-const audio = document.querySelector("audio");
+
+let audio = document.querySelector("audio");
 
 let mic;
 let dest;
 
+
+const replaceAudio = (src) => {
+  var newAudio = document.createElement('audio');
+  newAudio.controls = true;
+  newAudio.autoplay = true;
+  if(src) {
+      newAudio.src = src;
+  }
+  
+  var parentNode = audio.parentNode;
+  parentNode.removeChild(audio);
+  parentNode.appendChild(newAudio);
+  audio = newAudio;
+}
+
 const requestMicrophone = async () => {
-  await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
   Tone.start();
   mic = new Tone.UserMedia();
   await mic.open();
@@ -37,7 +52,7 @@ const main = async () => {
     recorder.stopRecording(function() {
       const blob = recorder.getBlob();
       if (audio) {
-        audio.src = URL.createObjectURL(blob);
+        replaceAudio(URL.createObjectURL(blob));
       }
     });
   }, 3000);
