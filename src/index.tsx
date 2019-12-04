@@ -1,5 +1,15 @@
 import Tone from "tone";
-import RecordRTC from "recordrtc";
+import RecordRTC, { StereoAudioRecorder } from "recordrtc";
+
+interface RecorderOptions {
+  type: string;
+  recorderType?: MediaRecorder;
+  sampleRate?: number;
+  bufferSize?: number;
+  numberOfAudioChannels?: number;
+}
+
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 const countdownEl = document.getElementById("countdown");
 
@@ -26,9 +36,16 @@ const record = async (index: number) => {
     await Tone.start();
   }
 
-  let recorder = RecordRTC(dest.stream, {
+  const options: RecorderOptions = {
     type: 'audio'
-  });
+  };
+  if (isSafari) {
+    options.recorderType = StereoAudioRecorder;
+    options.sampleRate = 44100;
+    options.bufferSize = 4096;
+    options.numberOfAudioChannels = 1;
+  }
+  let recorder = RecordRTC(dest.stream, options);
 
   let count = 4;
   const countdown = new Tone.Event(() => {
